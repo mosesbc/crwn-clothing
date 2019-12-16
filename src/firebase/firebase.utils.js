@@ -22,7 +22,7 @@ const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({prompt:'select_account'}); //trigger google signin popup
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
-//will save the user to db
+//will query data from db using auth but if not existing save it to db
 export const createUserProfileDocument = async (userAuth,additionalData)  => {
     
     if (!userAuth) return;
