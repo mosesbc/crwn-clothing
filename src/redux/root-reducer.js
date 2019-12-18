@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux'
 
 import userReducer from './user/user.reducer'
+import cartReducer from './cart/cart.reducer'
 
 //all reducer will always be called
 //combineReducer will return the global redux state
@@ -16,5 +17,6 @@ import userReducer from './user/user.reducer'
   c: c(state.c, action)
 */
 export default combineReducers({
-    user:userReducer
+    user:userReducer,
+    cart:cartReducer
 })
