@@ -17,6 +17,12 @@ export const selectCollections = createSelector(
     [selectShop],
     shop => shop.collections
 )
+//added due to data normalization
+//convert object to array
+export const selectCollectionsForPreview = createSelector(
+    [selectCollections],
+    collections => Object.keys(collections).map(key=>collections[key])
+)
 
 //this one is a curried function that returns the main function that accepts a state
 export const selectCollection = collectionUrlParam => createSelector(
