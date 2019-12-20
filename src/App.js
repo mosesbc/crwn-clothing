@@ -37,7 +37,9 @@ class App extends React.Component {
 
       } 
       setCurrentUser(userAuth)
-      
+      /* used for 1 time migration only, "shop collection"
+      addCollectionAndDocuments('collection',collectionsArray.map(({title,items}) => ({title,items})))//create new list with necessary fields only
+      */
     })
   }
 
