@@ -21,12 +21,12 @@ export const selectCollections = createSelector(
 //convert object to array
 export const selectCollectionsForPreview = createSelector(
     [selectCollections],
-    collections => Object.keys(collections).map(key=>collections[key])
+    collections =>collections? Object.keys(collections).map(key=>collections[key])  : []
 )
 
 //this one is a curried function that returns the main function that accepts a state
 export const selectCollection = collectionUrlParam => createSelector(
     [selectCollections],
     //collections => collections.find(collection => collection.id === COLLECTION_ID_MAP[collectionUrlParam])removed due to data normalization
-    collections => collections[collectionUrlParam]
+    collections => (collections ? collections[collectionUrlParam] : null)
 )

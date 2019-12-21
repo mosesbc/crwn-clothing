@@ -16,7 +16,6 @@ class SignUp extends React.Component{
     }
 
     handleSubmit = async event => {
-        console.log('handle submit')
         event.preventDefault();
         const {displayName, email, password, confirmPassword} = this.state
         if(password !== confirmPassword){
@@ -27,9 +26,6 @@ class SignUp extends React.Component{
         try{
             //createUserWithEmailAndPassword from firebase auth library
             const {user} = await auth.createUserWithEmailAndPassword(email,password);
-            console.log('------------- created user------------------')
-            console.log(user)
-            console.log('------------- created user------------------')
             await createUserProfileDocument(user,{displayName})
 
             //clear form
