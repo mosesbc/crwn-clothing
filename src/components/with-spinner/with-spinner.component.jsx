@@ -2,8 +2,8 @@ import React from 'react'
 
 import {SpinnerContainer,SpinnerOverlay} from './with-spinner.styes'
 
-const WithSpinner = WrappedComponent => ({isloading, ...otherProps}) =>{
-    return isloading ?
+const WithSpinner = WrappedComponent => ({isLoading, ...otherProps}) =>{
+    return isLoading ?
         (<SpinnerOverlay>
         <SpinnerContainer></SpinnerContainer>
         </SpinnerOverlay>)

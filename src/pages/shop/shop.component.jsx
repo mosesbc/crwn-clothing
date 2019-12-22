@@ -1,15 +1,9 @@
 import React from 'react'
-import CollectionOverview from '../../components/collection-overview/collection-overview.component'
+import CollectionsOverviewContainer from '../../components/collection-overview/collection-overview.container'
 import {Route} from 'react-router-dom'
-import CollectionPage from '../../components/collection/collection.component';
+import CollectionPageContainer from '../../components/collection/collection.container';
 import {fetchCollectionsStartAsync} from '../../redux/shop/shop.action'
 import {connect} from 'react-redux'
-import WithSpinner from '../../components/with-spinner/with-spinner.component'
-import {selectIsColletionFetching,selectIsColletionLoaded} from '../../redux/shop/shop.selector'
-import {createStructuredSelector} from 'reselect'
-
-const CollectionOverviewWithSpinner = WithSpinner(CollectionOverview)
-const CollectionPageWithSpinner = WithSpinner(CollectionPage)
 
 //match is available since from App.js shop page was displayed by a route component, so we can do nested route
 class ShopPage extends React.Component{
@@ -48,24 +42,19 @@ class ShopPage extends React.Component{
     }
 
     render(){
-      const {match,isCollectionFetching,selectIsColletionLoaded} = this.props
+      const {match} = this.props
       return (
       <div className='shop-page'>
-        <Route exact path={`${match.path}`} render={props=><CollectionOverviewWithSpinner isloading={isCollectionFetching} {...props}/>} />
-        <Route path={`${match.path}/:collectionId`} render={props=><CollectionPageWithSpinner isloading={!selectIsColletionLoaded} {...props}/>} />
+        <Route exact path={`${match.path}`} component={CollectionsOverviewContainer} />
+        <Route path={`${match.path}/:collectionId`} component={CollectionPageContainer} />
       </div>
       )
     }
 
 }
 
-const mapStateToProps = createStructuredSelector({
-  isCollectionFetching:selectIsColletionFetching,
-  selectIsColletionLoaded:selectIsColletionLoaded
-})
-
 const mapDispatchToProps = (dispatch) => ({
   fetchCollectionsStartAsync: () => {dispatch(fetchCollectionsStartAsync())}
 })
 
-export default connect(mapStateToProps,mapDispatchToProps)(ShopPage);
+export default connect(null,mapDispatchToProps)(ShopPage);
