@@ -30,3 +30,13 @@ export const selectCollection = collectionUrlParam => createSelector(
     //collections => collections.find(collection => collection.id === COLLECTION_ID_MAP[collectionUrlParam])removed due to data normalization
     collections => (collections ? collections[collectionUrlParam] : null)
 )
+
+export const selectIsColletionFetching = createSelector(
+    [selectShop],
+    shop => shop.isFetching
+)
+
+export const selectIsColletionLoaded = createSelector(
+    [selectShop],
+    shop => !!shop.collections // !! converts it to truth/falsy expression
+)
