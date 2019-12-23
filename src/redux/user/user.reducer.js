@@ -12,15 +12,13 @@ const userReducer = (state = INITIAL_STATE, action) => {
         //         ...state,
         //         currentUser:action.payload
         //     } 
-        case UserActionTypes.GOOGLE_SIGN_IN_SUCCESS:
-        case UserActionTypes.EMAIL_SIGN_IN_SUCCESS:
+        case UserActionTypes.SIGN_IN_SUCCESS:
             return {//this will always fire for both GOOGLE_SIGN_IN_SUCCESS and EMAIL_SIGN_IN_SUCCESS
                 ...state,
                 currentUser:action.payload,
                 error:null//just to clear the message if successed
             } 
-        case UserActionTypes.GOOGLE_SIGN_IN_FAILURE:
-        case UserActionTypes.EMAIL_SIGN_IN_FAILURE:
+        case UserActionTypes.SIGN_IN_FAILURE:
             return {
                 ...state,
                 error:action.payload
