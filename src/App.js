@@ -21,26 +21,27 @@ class App extends React.Component {
     
     const {setCurrentUser} = this.props;
 
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    //this block is now implemented using redux-saga
+    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
 
-     if(userAuth){
-        //query from dev if not exists then save to DB
-        const userRef = await createUserProfileDocument(userAuth);
+    //  if(userAuth){
+    //     //query from dev if not exists then save to DB
+    //     const userRef = await createUserProfileDocument(userAuth);
 
-        //subscribe to userRef/snapshot
-        userRef.onSnapshot(snapShot => {
-          setCurrentUser({
-            id: snapShot.id,
-              ...snapShot.data()
-          });
-        })
+    //     //subscribe to userRef/snapshot
+    //     userRef.onSnapshot(snapShot => {
+    //       setCurrentUser({
+    //         id: snapShot.id,
+    //           ...snapShot.data()
+    //       });
+    //     })
 
-      } 
-      setCurrentUser(userAuth)
-      /* used for 1 time migration only, "shop collection"
-      addCollectionAndDocuments('collections',collectionsArray.map(({title,items}) => ({title,items})))//create new list with necessary fields only
-      */
-    })
+    //   } 
+    //   setCurrentUser(userAuth)
+    //   /* used for 1 time migration only, "shop collection"
+    //   addCollectionAndDocuments('collections',collectionsArray.map(({title,items}) => ({title,items})))//create new list with necessary fields only
+    //   */
+    // })
   }
 
   componentWillUnmount(){

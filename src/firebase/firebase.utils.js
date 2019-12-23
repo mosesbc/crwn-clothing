@@ -18,9 +18,14 @@ firebase.initializeApp(config)
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
+/* renamed while converting to redux sagas
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({prompt:'select_account'}); //trigger google signin popup
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
+*/
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({prompt:'select_account'}); //trigger google signin popup
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 //will query data from db using auth but if not existing save it to db
 export const createUserProfileDocument = async (userAuth,additionalData)  => {
