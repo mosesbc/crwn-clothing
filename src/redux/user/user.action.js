@@ -17,7 +17,7 @@ export const googleSignInSuccess = (user) => ({
 })
 
 export const googleSignInFailure = (error) => ({
-    type:UserActionTypes.GOOGLE_SIGN_IN_SUCCESS,
+    type:UserActionTypes.GOOGLE_SIGN_IN_FAILURE,
     payload:error
 })
 
@@ -32,6 +32,6 @@ export const emailSignInSuccess = (user) => ({
 })
 
 export const emailSignInFailure = (error) => ({
-    type:UserActionTypes.EMAIL_SIGN_IN_SUCCESS,
+    type:UserActionTypes.EMAIL_SIGN_IN_FAILURE,
     payload:error
 })
