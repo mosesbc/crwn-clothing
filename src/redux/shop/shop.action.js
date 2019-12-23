@@ -1,5 +1,4 @@
 import ShopActionTypes from './shop.types'
-import {firestore, convertCollectionsSnapshotToMap} from '../../firebase/firebase.utils'
 /* replaced by fetchCollections actions 
 export const updateCollections = collectionsMap => ({
     type:ShopActionTypes.UPDATE_COLLECTIONS,
@@ -21,8 +20,8 @@ export const fetchCollectionsFailure = errorMessage => ({
     payload:errorMessage
 })
 
-
-//we cancall this function because of redux=thunk
+/*
+//we can call this function because of redux=thunk; commented out , were now moving the functionality to sage
 export const fetchCollectionsStartAsync = () => {
     return dispatch => {
         const collectionRef = firestore.collection('collections')//the name of our collection in firebase , need to edit this to collectionsgit 
@@ -34,3 +33,4 @@ export const fetchCollectionsStartAsync = () => {
         }).catch(error => dispatch(fetchCollectionsFailure(error.errorMessage)))
     }
 }
+*/

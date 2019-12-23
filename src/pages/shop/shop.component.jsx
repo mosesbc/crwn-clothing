@@ -2,7 +2,8 @@ import React from 'react'
 import CollectionsOverviewContainer from '../../components/collection-overview/collection-overview.container'
 import {Route} from 'react-router-dom'
 import CollectionPageContainer from '../../components/collection/collection.container';
-import {fetchCollectionsStartAsync} from '../../redux/shop/shop.action'
+import {fetchCollectionsStart} from '../../redux/shop/shop.action'
+//import {fetchCollectionsStartAsync} from '../../redux/shop/shop.action'
 import {connect} from 'react-redux'
 
 //match is available since from App.js shop page was displayed by a route component, so we can do nested route
@@ -15,8 +16,8 @@ class ShopPage extends React.Component{
     unsubscribeFromSnapshot = null;
 
     componentDidMount(){
-        const {fetchCollectionsStartAsync} = this.props
-        fetchCollectionsStartAsync()
+        const {fetchCollectionsStart} = this.props
+        fetchCollectionsStart()
 
         /* moved to fetchCollectionStartAsync
         const collectionRef = firestore.collection('collections')//the name of our collection in firebase , need to edit this to collectionsgit 
@@ -54,7 +55,7 @@ class ShopPage extends React.Component{
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchCollectionsStartAsync: () => {dispatch(fetchCollectionsStartAsync())}
+  fetchCollectionsStart: () => {dispatch(fetchCollectionsStart())}
 })
 
 export default connect(null,mapDispatchToProps)(ShopPage);
