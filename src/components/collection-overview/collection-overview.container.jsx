@@ -1,12 +1,12 @@
 import {connect} from 'react-redux'
 import {createStructuredSelector} from 'reselect'
 import {compose} from 'redux'
-import {selectIsColletionLoaded} from '../../redux/shop/shop.selector'
+import {selectIsColletionFetching} from '../../redux/shop/shop.selector'
 import WithSpinner from '../../components/with-spinner/with-spinner.component'
 import CollectionOverview from '../../components/collection-overview/collection-overview.component'
 
 const mapStateToProps = createStructuredSelector({
-    isLoading:selectIsColletionLoaded
+    isLoading:selectIsColletionFetching
 })
 //hard to read , mostly if you add withRouter; equivalent to compose below without withRouter
 //const CollectionsOverviewContainer = withRouter(connect(mapStateToProps)(WithSpinner(CollectionOverview)))
