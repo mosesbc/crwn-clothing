@@ -17,7 +17,15 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 currentUser:action.payload,
                 error:null//just to clear the message if successed
-            } 
+        
+            }    
+        case UserActionTypes.SIGN_OUT_SUCCESS:
+            return{
+                ...state,
+                currentUser:null,
+                error:null
+            }
+        case UserActionTypes.SIGN_OUT_FAILURE:
         case UserActionTypes.SIGN_IN_FAILURE:
             return {
                 ...state,
