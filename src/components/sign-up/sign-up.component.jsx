@@ -1,72 +1,50 @@
-import React from 'react'
+import React,{useState} from 'react'
 import FormInput from '../form-input/form-input.component'
 import CustomButton from '../custom-button/custom-button.component';
 import {signUpStart} from '../../redux/user/user.action'
 import {connect} from 'react-redux'
 import './sign-up.styles.scss'
 
-class SignUp extends React.Component{
-    constructor(){
-        super()
-        this.state = {
-            displayName:'',
-            email:'',
-            password:'',
-            confirmPassword:''
-        }
-    }
+const SignUp = ({signUpStart}) => {
 
-    handleSubmit = async event => {
+    const [userCredentials,setCredentials] = useState({
+        displayName:'',
+        email:'',
+        password:'',
+        confirmPassword:''
+    })
+    const {displayName, email, password, confirmPassword} = userCredentials
+
+    const handleSubmit = async event => {
         event.preventDefault();
-        const {displayName, email, password, confirmPassword} = this.state
-        const {signUpStart} = this.props
+        
         if(password !== confirmPassword){
             alert("password don't match")
             return;
         }
         signUpStart({email,password,displayName})
 
-        /* migrated to redux-saga
-        try{
-            //createUserWithEmailAndPassword from firebase auth library
-            const {user} = await auth.createUserWithEmailAndPassword(email,password);
-            await createUserProfileDocument(user,{displayName})
-
-            //clear form
-            this.setState({
-                displayName:'',
-                email:'',
-                password:'',
-                confirmPassword:''
-            })
-
-        }catch(error){
-            console.log('error')
-        }
-        */
-
     }
 
-    handleChange = event => {
+    const handleChange = event => {
         const {name,value} = event.target;
-        this.setState({
+        setCredentials({
+            ...userCredentials,
             [name]:value
         })
-
+        
     }
 
-    render(){
-        const {displayName,email,password,confirmPassword} = this.state;
-        return(
+    return(
             <div className='sign-up'>
                 <h2 className='title'>I do not have an account</h2>
                 <span>Sign up with your email and password</span>
-                <form className='sign-up-form' onSubmit={this.handleSubmit}>
+                <form className='sign-up-form' onSubmit={handleSubmit}>
                     <FormInput 
                         type='displayName'
                         name='displayName'
                         value={displayName}
-                        onChange={this.handleChange}
+                        onChange={handleChange}
                         label='Display Name'
                         required
                     />
@@ -74,7 +52,7 @@ class SignUp extends React.Component{
                         type='email'
                         name='email'
                         value={email}
-                        onChange={this.handleChange}
+                        onChange={handleChange}
                         label='Email'
                         required
                     />
@@ -82,7 +60,7 @@ class SignUp extends React.Component{
                         type='password'
                         name='password'
                         value={password}
-                        onChange={this.handleChange}
+                        onChange={handleChange}
                         label='Password'
                         required
                     />
@@ -90,7 +68,7 @@ class SignUp extends React.Component{
                         type='password'
                         name='confirmPassword'
                         value={confirmPassword}
-                        onChange={this.handleChange}
+                        onChange={handleChange}
                         label='Confirm Password'
                         required
                     />
@@ -98,7 +76,6 @@ class SignUp extends React.Component{
                 </form>
             </div>
         )
-    }
 }
 
 const mapDispatchToProps = (dispatch) => ({
